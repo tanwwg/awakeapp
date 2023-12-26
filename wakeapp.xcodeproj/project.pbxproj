@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE3C64372B3AFAC2001DA718 /* Awake in Frameworks */ = {isa = PBXBuildFile; productRef = AE3C64362B3AFAC2001DA718 /* Awake */; };
 		AE9C6B5D2B3A4F1400437542 /* wakeappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9C6B5C2B3A4F1400437542 /* wakeappApp.swift */; };
 		AE9C6B5F2B3A4F1400437542 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9C6B5E2B3A4F1400437542 /* ContentView.swift */; };
 		AE9C6B612B3A4F1400437542 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9C6B602B3A4F1400437542 /* Item.swift */; };
 		AE9C6B632B3A4F1500437542 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE9C6B622B3A4F1500437542 /* Assets.xcassets */; };
 		AE9C6B662B3A4F1500437542 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE9C6B652B3A4F1500437542 /* Preview Assets.xcassets */; };
+		AE9C6B6E2B3A547800437542 /* AddWakeHostForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9C6B6D2B3A547800437542 /* AddWakeHostForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,7 @@
 		AE9C6B622B3A4F1500437542 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE9C6B652B3A4F1500437542 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AE9C6B672B3A4F1500437542 /* wakeapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = wakeapp.entitlements; sourceTree = "<group>"; };
+		AE9C6B6D2B3A547800437542 /* AddWakeHostForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWakeHostForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE3C64372B3AFAC2001DA718 /* Awake in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				AE9C6B5C2B3A4F1400437542 /* wakeappApp.swift */,
+				AE9C6B6D2B3A547800437542 /* AddWakeHostForm.swift */,
 				AE9C6B5E2B3A4F1400437542 /* ContentView.swift */,
 				AE9C6B602B3A4F1400437542 /* Item.swift */,
 				AE9C6B622B3A4F1500437542 /* Assets.xcassets */,
@@ -88,6 +93,9 @@
 			dependencies = (
 			);
 			name = wakeapp;
+			packageProductDependencies = (
+				AE3C64362B3AFAC2001DA718 /* Awake */,
+			);
 			productName = wakeapp;
 			productReference = AE9C6B592B3A4F1400437542 /* wakeapp.app */;
 			productType = "com.apple.product-type.application";
@@ -116,6 +124,9 @@
 				Base,
 			);
 			mainGroup = AE9C6B502B3A4F1400437542;
+			packageReferences = (
+				AE3C64352B3AFAC2001DA718 /* XCRemoteSwiftPackageReference "Awake" */,
+			);
 			productRefGroup = AE9C6B5A2B3A4F1400437542 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -145,6 +156,7 @@
 				AE9C6B5F2B3A4F1400437542 /* ContentView.swift in Sources */,
 				AE9C6B612B3A4F1400437542 /* Item.swift in Sources */,
 				AE9C6B5D2B3A4F1400437542 /* wakeappApp.swift in Sources */,
+				AE9C6B6E2B3A547800437542 /* AddWakeHostForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,6 +359,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AE3C64352B3AFAC2001DA718 /* XCRemoteSwiftPackageReference "Awake" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jesper-lindberg/Awake";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AE3C64362B3AFAC2001DA718 /* Awake */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AE3C64352B3AFAC2001DA718 /* XCRemoteSwiftPackageReference "Awake" */;
+			productName = Awake;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AE9C6B512B3A4F1400437542 /* Project object */;
 }

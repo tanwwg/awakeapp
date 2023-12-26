@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "awake",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jesper-lindberg/Awake",
+      "state" : {
+        "branch" : "master",
+        "revision" : "caa1316d9b8f1e9ffee7ceb99254a149488f93a9"
+      }
+    }
+  ],
+  "version" : 2
+}

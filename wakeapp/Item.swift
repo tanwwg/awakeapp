@@ -9,10 +9,17 @@ import Foundation
 import SwiftData
 
 @Model
-final class Item {
-    var timestamp: Date
-    
-    init(timestamp: Date) {
-        self.timestamp = timestamp
+final class WakeHost {
+    init(name: String, mac: String, broadcast: String, port: Int) {
+        self.name = name
+        self.mac = mac
+        self.broadcast = broadcast
+        self.port = port
     }
+    
+    var name: String
+    var mac: String
+    var broadcast: String
+    var port: Int
+    
 }
