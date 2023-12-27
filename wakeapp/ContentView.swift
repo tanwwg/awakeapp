@@ -13,25 +13,52 @@ struct WakeView: View {
     @Environment(\.dismiss) var dismiss
     var host: WakeHost
     @State var text = "Sending..."
+    @State var isError = false
     
     var body: some View {
         VStack {
             Text(text)
                 .padding()
+            if isError {
+                Button(action: { dismiss() }) {
+                    Text("OK")
+                }
+            }
         }
         .frame(width: 200, height: 200)
         .onAppear {
             let device = Awake.Device(MAC: host.mac, BroadcastAddr: host.broadcast, Port: UInt16(host.port))
             if let err = Awake.target(device: device) {
                 text = err.localizedDescription
+                isError = true
             } else {
                 text = "Wake sent"
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                dismiss()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    dismiss()
+                }
             }
         }
         
+    }
+}
+
+struct WakeHostView: View {
+    var host: WakeHost
+    
+    @State var isWake = false
+    
+    var body: some View {
+        Form {
+            LabeledContent("Mac", value: host.mac)
+            LabeledContent("Broadcast", value: host.broadcast)
+            LabeledContent("Port", value: "\(host.port)")
+            Button(action: { isWake = true }) {
+                Text("Wake")
+            }
+        }
+        .sheet(isPresented: $isWake) {
+            WakeView(host: host)
+        }
     }
 }
 
@@ -41,26 +68,12 @@ struct ContentView: View {
     
     @State var isAdd = false
     
-    @State var isWake: PersistentIdentifier?
+    @State var selectedItem: PersistentIdentifier?
 
     var body: some View {
         NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Form {
-                            LabeledContent("Mac", value: item.mac)
-                            LabeledContent("Broadcast", value: item.broadcast)
-                            LabeledContent("Port", value: "\(item.port)")
-                            Button(action: { isWake = item.id }) {
-                                Text("Wake")
-                            }
-                        }
-                    } label: {
-                        Text(item.name)
-                    }
-                }
-                .onDelete(perform: deleteItems)
+            List(items, selection: $selectedItem) { item in
+                Text(item.name)
             }
             .navigationSplitViewColumnWidth(min: 180, ideal: 200)
             .toolbar {
@@ -71,13 +84,17 @@ struct ContentView: View {
                 }
             }
         } detail: {
-            Text("Select an item")
+            if let sel = selectedItem {
+                WakeHostView(host: items.first(where: { $0.id == sel })!)
+            } else {
+                Text("Select an item")
+            }
         }
         .sheet(isPresented: $isAdd) {
             WakeHostForm()
         }
-        .sheet(item: $isWake) { id in
-            WakeView(host: items.first(where: {$0.id == id})!)
+        .onAppear {
+            selectedItem = items.first?.id
         }
     }
 
