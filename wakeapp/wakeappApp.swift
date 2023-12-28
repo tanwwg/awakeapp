@@ -24,7 +24,7 @@ struct wakeappApp: App {
     }()
 
     var body: some Scene {
-        WindowGroup {
+        Window("Wake app", id: "main") {
             ContentView()
         }
         .modelContainer(sharedModelContainer)
