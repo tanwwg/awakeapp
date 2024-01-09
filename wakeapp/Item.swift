@@ -17,9 +17,9 @@ final class WakeHost {
         self.port = port
     }
     
-    var name: String
-    var mac: String
-    var broadcast: String
-    var port: Int
+    var name = ""
+    var mac = ""
+    var broadcast = ""
+    var port = 0
     
 }
