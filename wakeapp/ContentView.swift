@@ -12,7 +12,7 @@ import Awake
 struct WakeView: View {
     @Environment(\.dismiss) var dismiss
     var host: WakeHost
-    @State var text = "Sending..."
+    @State var text = "Waking..."
     @State var isError = false
     
     var body: some View {
@@ -26,19 +26,16 @@ struct WakeView: View {
             }
         }
         .frame(width: 200, height: 200)
-        .onAppear {
-            let device = Awake.Device(MAC: host.mac, BroadcastAddr: host.broadcast, Port: UInt16(host.port))
-            if let err = Awake.target(device: device) {
-                text = err.localizedDescription
+        .task {
+            do {
+                try await WakeProcess(host: host).start()
+                NSSound.beep()
+                dismiss()
+            } catch {
+                text = error.localizedDescription
                 isError = true
-            } else {
-                text = "Wake sent"
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    dismiss()
-                }
             }
         }
-        
     }
 }
 

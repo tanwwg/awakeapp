@@ -8,6 +8,15 @@
         "branch" : "master",
         "revision" : "caa1316d9b8f1e9ffee7ceb99254a149488f93a9"
       }
+    },
+    {
+      "identity" : "swiftyping",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/samiyr/SwiftyPing",
+      "state" : {
+        "branch" : "master",
+        "revision" : "05591bc0047e41e0e1d98135c6bc457192a72d39"
+      }
     }
   ],
   "version" : 2
