@@ -44,21 +44,20 @@ import SwiftyPing
         let pinger = try SwiftyPing(host: "192.168.1.239", configuration: PingConfiguration(interval: 0.5, with: 3), queue: DispatchQueue.global())
         try await withCheckedThrowingContinuation { (continuation: CheckedContinuation<Void, Error>) in
             pinger.observer = { [self] (response) in
-                if let err = response.error {
-                    isError = true
-                    text = err.localizedDescription
-                    pinger.haltPinging()
-                    continuation.resume(throwing: err)
+                if response.error != nil {
+                    print("err in observer!")
+                    // probably no ping received
                 } else {
                     print("isPinged!")
                     isPinged = true
-                    pinger.haltPinging()
-                    continuation.resume()
                 }
+                pinger.haltPinging()
+                continuation.resume()
             }
             do {
                 try pinger.startPinging()
             } catch {
+                print("err in startPining()")
                 continuation.resume(throwing: error)
             }
         }
