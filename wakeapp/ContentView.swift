@@ -72,6 +72,8 @@ struct ContentView: View {
     
     @State var selectedItem: String?
     @State var error: Error?
+    
+    @State var geforce = KeystrokeApp()
 
     func loadItems() throws -> [WakeHost] {
         let docFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -93,17 +95,29 @@ struct ContentView: View {
             if let err = error {
                 Text(err.localizedDescription)
             } else {
-                NavigationSplitView {
-                    List(items, selection: $selectedItem) { item in
-                        Text(item.name)
+                VStack {
+                    NavigationSplitView {
+                        List(items, selection: $selectedItem) { item in
+                            Text(item.name)
+                        }
+                        .navigationSplitViewColumnWidth(min: 180, ideal: 200)
+                    } detail: {
+                        if let sel = selectedItem {
+                            WakeHostView(host: items.first(where: { $0.id == sel })!)
+                        } else {
+                            Text("Select an item")
+                        }
                     }
-                    .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-                } detail: {
-                    if let sel = selectedItem {
-                        WakeHostView(host: items.first(where: { $0.id == sel })!)
-                    } else {
-                        Text("Select an item")
+                    HStack {
+                        Circle().fill(geforce.isRunning ? .green : .red)
+                            .frame(width: 15, height: 15)
+                        Text("Geforce NOW")
+                        Button(action: { if geforce.isRunning { geforce.stop() } else { geforce.start() } }) {
+                            Text(geforce.isRunning ? "Stop": "Start")
+                        }
+                        Spacer()
                     }
+                    .padding()
                 }
                 //        .sheet(isPresented: $isAdd) {
                 //            WakeHostForm()

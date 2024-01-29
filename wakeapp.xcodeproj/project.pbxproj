@@ -10,6 +10,7 @@
 		AE1B9E2D2B54B819001B800D /* SwiftyPing in Frameworks */ = {isa = PBXBuildFile; productRef = AE1B9E2C2B54B819001B800D /* SwiftyPing */; };
 		AE1B9E2F2B54B846001B800D /* WakeProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1B9E2E2B54B846001B800D /* WakeProcess.swift */; };
 		AE3C64372B3AFAC2001DA718 /* Awake in Frameworks */ = {isa = PBXBuildFile; productRef = AE3C64362B3AFAC2001DA718 /* Awake */; };
+		AE9113EC2B6742D100572838 /* GeforceNow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9113EB2B6742D100572838 /* GeforceNow.swift */; };
 		AE9C6B5D2B3A4F1400437542 /* wakeappApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9C6B5C2B3A4F1400437542 /* wakeappApp.swift */; };
 		AE9C6B5F2B3A4F1400437542 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9C6B5E2B3A4F1400437542 /* ContentView.swift */; };
 		AE9C6B612B3A4F1400437542 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9C6B602B3A4F1400437542 /* Item.swift */; };
@@ -19,6 +20,8 @@
 
 /* Begin PBXFileReference section */
 		AE1B9E2E2B54B846001B800D /* WakeProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeProcess.swift; sourceTree = "<group>"; };
+		AE9113EB2B6742D100572838 /* GeforceNow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeforceNow.swift; sourceTree = "<group>"; };
+		AE9113ED2B67470700572838 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		AE9C6B592B3A4F1400437542 /* wakeapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = wakeapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE9C6B5C2B3A4F1400437542 /* wakeappApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wakeappApp.swift; sourceTree = "<group>"; };
 		AE9C6B5E2B3A4F1400437542 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 		AE9C6B5B2B3A4F1400437542 /* wakeapp */ = {
 			isa = PBXGroup;
 			children = (
+				AE9113ED2B67470700572838 /* Info.plist */,
 				AE9C6B5C2B3A4F1400437542 /* wakeappApp.swift */,
 				AE9C6B6D2B3A547800437542 /* AddWakeHostForm.swift */,
 				AE9C6B5E2B3A4F1400437542 /* ContentView.swift */,
@@ -69,6 +73,7 @@
 				AE9C6B672B3A4F1500437542 /* wakeapp.entitlements */,
 				AE9C6B642B3A4F1500437542 /* Preview Content */,
 				AE1B9E2E2B54B846001B800D /* WakeProcess.swift */,
+				AE9113EB2B6742D100572838 /* GeforceNow.swift */,
 			);
 			path = wakeapp;
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 			files = (
 				AE9C6B5F2B3A4F1400437542 /* ContentView.swift in Sources */,
 				AE9C6B612B3A4F1400437542 /* Item.swift in Sources */,
+				AE9113EC2B6742D100572838 /* GeforceNow.swift in Sources */,
 				AE9C6B5D2B3A4F1400437542 /* wakeappApp.swift in Sources */,
 				AE1B9E2F2B54B846001B800D /* WakeProcess.swift in Sources */,
 			);
@@ -304,6 +310,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = wakeapp/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -333,6 +340,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = wakeapp/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
