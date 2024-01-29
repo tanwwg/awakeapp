@@ -6,20 +6,24 @@
 //
 
 import Foundation
-import SwiftData
 
-@Model
-final class WakeHost {
-    init(name: String, mac: String, broadcast: String, port: Int) {
-        self.name = name
-        self.mac = mac
-        self.broadcast = broadcast
-        self.port = port
-    }
+struct WakeHost: Identifiable, Decodable {
+//    init(name: String, mac: String, broadcast: String, port: Int) {
+//        self.name = name
+//        self.mac = mac
+//        self.broadcast = broadcast
+//        self.port = port
+//    }
+//    
     
-    var name = ""
-    var mac = ""
-    var broadcast = ""
-    var port = 0
+    var id: String { name }
     
+    var name: String
+    var mac: String
+    var broadcastIp: String
+    var port: Int
+    var pingIp: String
+    
+    var runCmd: String?
+    var runArgs: [String]?
 }

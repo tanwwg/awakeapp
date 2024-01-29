@@ -47,8 +47,11 @@ struct WakeHostView: View {
     var body: some View {
         Form {
             LabeledContent("Mac", value: host.mac)
-            LabeledContent("Broadcast", value: host.broadcast)
+            LabeledContent("Broadcast", value: host.broadcastIp)
             LabeledContent("Port", value: "\(host.port)")
+            LabeledContent("IP", value: "\(host.pingIp)")
+            LabeledContent("Run", value: "\(host.runCmd ?? "[None]")")
+            LabeledContent("Args", value: "\((host.runArgs ?? []).joined(separator: " "))")
             Button(action: { isWake = true }) {
                 Text("Wake")
             }
@@ -60,55 +63,80 @@ struct WakeHostView: View {
 }
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [WakeHost]
+//    @Environment(\.modelContext) private var modelContext
+//    @Query private var items: [WakeHost]
     
-    @State var isAdd = false
+    @State var items: [WakeHost] = []
     
-    @State var selectedItem: PersistentIdentifier?
+//    @State var isAdd = false
+    
+    @State var selectedItem: String?
+    @State var error: Error?
 
+    func loadItems() throws -> [WakeHost] {
+        let docFolder = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let docUrl = docFolder.appending(path: "wake.json")
+        let data = try Data(contentsOf: docUrl)
+        return try JSONDecoder().decode([WakeHost].self, from: data)
+    }
+    
+    func reload() {
+        do {
+            items = try loadItems()
+        } catch {
+            self.error = error
+        }
+    }
+    
     var body: some View {
-        NavigationSplitView {
-            List(items, selection: $selectedItem) { item in
-                Text(item.name)
-            }
-            .navigationSplitViewColumnWidth(min: 180, ideal: 200)
-            .toolbar {
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+        Group {
+            if let err = error {
+                Text(err.localizedDescription)
+            } else {
+                NavigationSplitView {
+                    List(items, selection: $selectedItem) { item in
+                        Text(item.name)
+                    }
+                    .navigationSplitViewColumnWidth(min: 180, ideal: 200)
+                } detail: {
+                    if let sel = selectedItem {
+                        WakeHostView(host: items.first(where: { $0.id == sel })!)
+                    } else {
+                        Text("Select an item")
                     }
                 }
-            }
-        } detail: {
-            if let sel = selectedItem {
-                WakeHostView(host: items.first(where: { $0.id == sel })!)
-            } else {
-                Text("Select an item")
+                //        .sheet(isPresented: $isAdd) {
+                //            WakeHostForm()
+                //        }
             }
         }
-        .sheet(isPresented: $isAdd) {
-            WakeHostForm()
+        .toolbar {
+            ToolbarItem {
+                Button(action: reload) {
+                    Label("Reload", systemImage: "arrow.clockwise")
+                }
+            }
         }
         .onAppear {
-            selectedItem = items.first?.id
-        }
-    }
-
-    private func addItem() {
-        isAdd = true
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+            do {
+                items = try loadItems()
+                selectedItem = items.first?.id
+            } catch {
+                self.error = error
             }
         }
     }
+
+//    private func addItem() {
+//        isAdd = true
+//    }
+//
+//    private func deleteItems(offsets: IndexSet) {
+//        withAnimation {
+//            for index in offsets {
+//                modelContext.delete(items[index])
+//            }
+//        }
+//    }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: WakeHost.self, inMemory: true)
-}

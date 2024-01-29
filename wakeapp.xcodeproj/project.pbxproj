@@ -15,7 +15,6 @@
 		AE9C6B612B3A4F1400437542 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9C6B602B3A4F1400437542 /* Item.swift */; };
 		AE9C6B632B3A4F1500437542 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE9C6B622B3A4F1500437542 /* Assets.xcassets */; };
 		AE9C6B662B3A4F1500437542 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE9C6B652B3A4F1500437542 /* Preview Assets.xcassets */; };
-		AE9C6B6E2B3A547800437542 /* AddWakeHostForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9C6B6D2B3A547800437542 /* AddWakeHostForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,7 +113,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1510;
-				LastUpgradeCheck = 1510;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					AE9C6B582B3A4F1400437542 = {
 						CreatedOnToolsVersion = 15.1;
@@ -163,7 +162,6 @@
 				AE9C6B5F2B3A4F1400437542 /* ContentView.swift in Sources */,
 				AE9C6B612B3A4F1400437542 /* Item.swift in Sources */,
 				AE9C6B5D2B3A4F1400437542 /* wakeappApp.swift in Sources */,
-				AE9C6B6E2B3A547800437542 /* AddWakeHostForm.swift in Sources */,
 				AE1B9E2F2B54B846001B800D /* WakeProcess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +203,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -268,6 +267,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -298,6 +298,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"wakeapp/Preview Content\"";
 				DEVELOPMENT_TEAM = XKGHA6BEPT;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -326,6 +327,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"wakeapp/Preview Content\"";
 				DEVELOPMENT_TEAM = XKGHA6BEPT;
 				ENABLE_HARDENED_RUNTIME = YES;
