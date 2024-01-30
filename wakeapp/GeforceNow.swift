@@ -11,6 +11,7 @@ import SwiftUI
     
     var isRunning = false
     var count = 0
+    var startTime: Date?
     
     var nowTask: Process?
     
@@ -19,7 +20,9 @@ import SwiftUI
     
     func start() {
         if isRunning { return }
-        
+
+        self.startTime = Date.now
+
         DispatchQueue.global().async { [self] in
             let task = Process()
             task.arguments = []
@@ -45,6 +48,7 @@ import SwiftUI
 //        }
         if let t = nowTask { t.terminate() }
         nowTask = nil
+        startTime = nil
         
         isRunning = false
     }
